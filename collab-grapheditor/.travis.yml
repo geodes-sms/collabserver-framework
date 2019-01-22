@@ -1,0 +1,27 @@
+language: cpp
+sudo: required
+dist: trusty
+
+matrix:
+    include:
+        - os: linux
+          compiler: gcc
+          env: BUILD_TYPE=Debug VERBOSE=1
+        - os: linux
+          compiler: gcc
+          env: BUILD_TYPE=Release VERBOSE=1
+        - os: linux
+          compiler: clang
+          env: BUILD_TYPE=Debug VERBOSE=1
+        - os: linux
+          compiler: clang
+          env: BUILD_TYPE=Release VERBOSE=1
+
+install:
+    - sudo apt-get install libzmq3-dev libzmq3
+    - sudo apt-get install curl
+
+script: ./build.sh
+
+notifications:
+  email: false
